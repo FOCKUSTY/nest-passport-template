@@ -11,6 +11,8 @@ type AuthData =
   | "API_URL";
 
 const REQUIRED = [
+  "CLIENT_URL",
+  
   "DATABASE_HOST",
   "DATABASE_USER",
   "DATABASE_DATABASE",
@@ -21,6 +23,8 @@ const REQUIRED = [
   "GOOGLE_CLIENT_SECRET",
   "GOOGLE_CALLBACK_URL",
   "GOOGLE_API_URL",
+
+  "SESSION_SECRET"
 ] as const;
 
 type Required = (typeof REQUIRED)[number] | `${Uppercase<AuthTypes>}_${AuthData}`;
@@ -28,10 +32,17 @@ type Required = (typeof REQUIRED)[number] | `${Uppercase<AuthTypes>}_${AuthData}
 const KEYS = [
   ...REQUIRED,
 
-  "PORT"
+  "PORT",
+  "COOKIE_MAX_AGE"
 ] as const;
 
 type Keys = (typeof KEYS)[number];
+
+type Unrequired = Exclude<Keys, Required>;
+const DEFAULT: Record<Unrequired, string> = {
+  PORT: "3001",
+  COOKIE_MAX_AGE: "604800000"
+};
 
 class Env {
   private readonly _env = process.env;
@@ -43,13 +54,23 @@ class Env {
 
   public readonly get = <
     T extends boolean = false,
+    DefaultIncludes extends boolean = false,
     Key extends T extends false
-      ? Keys
+      ? DefaultIncludes extends true ? Unrequired : Keys
       : string = T extends false
-        ? Keys
+        ? DefaultIncludes extends true ? Unrequired : Keys
         : string
-  >(key: Key): Key extends Required ? string : string|false => {
-    return (this._env[key] || false) as any
+  >(
+    key: Key,
+    defaultIncludes: DefaultIncludes = false as DefaultIncludes
+  ): Key extends Required ? string : DefaultIncludes extends true ? string : string|false => {
+    return (
+      this._env[key] || (
+        defaultIncludes == true
+          ? DEFAULT[key as Unrequired]
+          : false
+      )
+    ) as any;
   }
 
   public get env() {
@@ -65,10 +86,12 @@ class Env {
       };
 
       if (keys.length !== 0) {
-        throw new Error(`keys in your .env are not defined. Define keys:\n${keys.join(", ")}`)
+        throw new Error(`keys in your .env are not defined. Define next keys:\n${keys.join(", ")}`)
       };
     }
   }
 }
+
+new Env().get("DATABASE_HOST")
 
 export default Env;
