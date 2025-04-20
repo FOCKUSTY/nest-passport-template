@@ -20,6 +20,7 @@
     "noFallthroughCasesInSwitch": false,
     "paths": {
       "database": ["./database"],
+      "types": ["./types"],
       "env": ["./env"],
       "src": ["./src"]
     }
