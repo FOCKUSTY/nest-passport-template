@@ -3,10 +3,17 @@
   "version": "0.0.1",
   "description": "",
   "author": "",
-  "license": "MIT",
+  "license": "UNLICENSED",
   "keywords": [
-    "nest", "nest.js", "passport", "passport auth",
-    "sql", "sequelize", "template"
+    "nest",
+    "nest.js",
+    "passport",
+    "passport auth",
+    "sql",
+    "mongodb",
+    "mongoose",
+    "sequelize",
+    "template"
   ],
   "scripts": {
     "build": "nest build",
@@ -27,6 +34,7 @@
     "@nestjs/core": "^10.0.0",
     "@nestjs/platform-express": "^10.0.0",
     "cookie-parser": "^1.4.7",
+    "mongoose": "^8.16.4",
     "passport": "^0.7.0",
     "passport-oauth2": "^1.8.0",
     "reflect-metadata": "^0.2.0",

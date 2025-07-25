@@ -1,4 +1,4 @@
-import { AuthTypes } from "types/auth-user.type";
+import { AuthTypes } from "src/types/auth-user.type";
 
 import Env from "./env";
 

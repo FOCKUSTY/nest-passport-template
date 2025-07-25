@@ -1,6 +1,6 @@
 import { DataTypes, Model } from "sequelize";
 
-import { ICreateUser, IUser } from "types/user.type";
+import { ICreateUser, IUser } from "src/types/user.type";
 import Table from "../table";
 
 const Users = new Table<Model<IUser, ICreateUser>>({

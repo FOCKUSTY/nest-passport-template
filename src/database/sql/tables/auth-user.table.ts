@@ -1,6 +1,6 @@
 import { DataTypes, Model } from "sequelize";
 
-import { AUTH_TYPES, IAuthUser, ICreateAuthUser } from "types/auth-user.type";
+import { AUTH_TYPES, IAuthUser, ICreateAuthUser } from "src/types/auth-user.type";
 import Table from "../table";
 
 const AuthUsers = new Table<Model<IAuthUser, ICreateAuthUser>>({

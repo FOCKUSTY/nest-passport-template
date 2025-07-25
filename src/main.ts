@@ -1,4 +1,4 @@
-import "database";
+import "database/sql";
 
 import cookieParser = require("cookie-parser");
 

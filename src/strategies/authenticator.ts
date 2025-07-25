@@ -1,9 +1,9 @@
-import Database from "database/tables";
+import Database from "database/sql/tables";
 
 import passport = require("passport");
 import { Profile } from "passport";
 
-import { AuthTypes, IAuthUser } from "types/auth-user.type";
+import { AuthTypes, IAuthUser } from "src/types/auth-user.type";
 import { Strategy, VerifyCallback, VerifyFunction } from "passport-oauth2";
 
 import { getPassportAuthEnv } from "env";

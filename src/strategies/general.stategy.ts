@@ -1,9 +1,9 @@
-import Database from "database/tables";
+import Database from "database/sql/tables";
 
 import passport = require("passport");
 
 import Authenticator from "./authenticator";
-import { IAuthUser } from "types/auth-user.type";
+import { IAuthUser } from "src/types/auth-user.type";
 
 const { AuthUsers } = new Database();
 
