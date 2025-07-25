@@ -19,10 +19,10 @@
     "forceConsistentCasingInFileNames": false,
     "noFallthroughCasesInSwitch": false,
     "paths": {
-      "database": ["./database"],
-      "types": ["src/types"],
-      "env": ["./env"],
-      "src": ["./src"]
+      "database/*": ["./src/database/("],
+      "types/*": ["src/types/*"],
+      "api/*": ["./src/api/*"],
+      "src/*": ["./src"]
     }
   }
 }

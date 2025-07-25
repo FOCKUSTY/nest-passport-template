@@ -1,35 +1,39 @@
-import { AuthTypes } from "src/types/auth-user.type";
+import { AuthTypes } from "types/auth-user.type"
 
 import { config } from "dotenv";
 
 config();
 
-type AuthData = "CLIENT_ID" | "CLIENT_SECRET" | "CALLBACK_URL" | "API_URL";
+type AuthData =
+  | "CLIENT_ID"
+  | "CLIENT_SECRET"
+  | "CALLBACK_URL"
+  | "API_URL";
 
 const REQUIRED = [
   "CLIENT_URL",
-
-  "DISCORD_CLIENT_ID",
-  "DISCORD_CLIENT_SECRET",
-  "DISCORD_TOKEN",
-  "DISCORD_CALLBACK_URL",
-  "DISCORD_API_URL",
-  "MONGO_URL",
-
-  "HASH_KEY",
+  
+  "DATABASE_HOST",
+  "DATABASE_USER",
+  "DATABASE_DATABASE",
+  "DATABASE_PASSWORD",
+  "DATABASE_DIALECT",
+  
+  "GOOGLE_CLIENT_ID",
+  "GOOGLE_CLIENT_SECRET",
+  "GOOGLE_CALLBACK_URL",
+  "GOOGLE_API_URL",
 
   "SESSION_SECRET"
 ] as const;
 
-type Required =
-  | (typeof REQUIRED)[number]
-  | `${Uppercase<AuthTypes>}_${AuthData}`;
+type Required = (typeof REQUIRED)[number] | `${Uppercase<AuthTypes>}_${AuthData}`;
 
 const KEYS = [
   ...REQUIRED,
+
   "PORT",
-  "COOKIE_MAX_AGE",
-  "COOKIE_TOKEN_MAX_AGE"
+  "COOKIE_MAX_AGE"
 ] as const;
 
 type Keys = (typeof KEYS)[number];
@@ -37,8 +41,7 @@ type Keys = (typeof KEYS)[number];
 type Unrequired = Exclude<Keys, Required>;
 const DEFAULT: Record<Unrequired, string> = {
   PORT: "3001",
-  COOKIE_MAX_AGE: "604800000",
-  COOKIE_TOKEN_MAX_AGE: "10800000"
+  COOKIE_MAX_AGE: "604800000"
 };
 
 type EnvType = Record<Keys, string>;
